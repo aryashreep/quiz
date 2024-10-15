@@ -4,12 +4,8 @@ class Query
     private $conn;
 
     // Constructor: Initializes the database connection
-    public function __construct()
+    public function __construct($servername = "localhost", $username = "root", $password = "", $dbname = "database")
     {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "database";
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
         if ($this->conn->connect_error) {

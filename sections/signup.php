@@ -1,5 +1,6 @@
 <?php
-
+$conn = new Query("localhost", "root", "", "scriptures_quiz");
+$centers = $conn->select("centers");
 ?>
   <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -65,6 +66,18 @@
                                           <label class="form-check-label" for="maleGender">Female</label>
                                       </div>
                                   </div>
+
+                                  <div class="form-outline mb-4">
+                                      <label class="form-label" for="form3Example8">You are conected to?</label>                        
+                                        <select class="form-control form-control-lg form-select" name="centers" data-container="body" required>
+                                        <option  value="" selected>Please select the center</option>
+                                        <?php
+                                        foreach($centers as $center){
+                                            echo "<option value='".$center['cid']."'>".$center['center_name']."</option>";
+                                        }
+                                        ?>
+                                        </select>
+                                  </div>                                  
 
                                   <div class="d-flex justify-content-end pt-3">
                                       <!-- Create fields for the honeypot -->
