@@ -1,5 +1,11 @@
 <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
+      <?php
+      if(isset($_SESSION['success_alert'])&& $_SESSION['success_alert']){
+        echo $_SESSION['success_alert'];
+        unset($_SESSION['success_alert']);
+    }
+      ?>
       <div class="col">
         <div class="card card-registration my-4">
           <div class="row g-0">
@@ -16,7 +22,7 @@
                                             <label>Username<span class="text-danger">*</span></label>
                                             <div class="input-group">
                                                 <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                                                <input type="text" class="form-control" placeholder="Enter Username">
+                                                <input type="text" class="form-control" placeholder="Enter mobile number">
                                             </div>
                                         </div>
 
@@ -30,9 +36,7 @@
 
                                         <div class="col-sm-6">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="inlineFormCheck">
-                                                <label class="form-check-label" for="inlineFormCheck">Remember
-                                                    me</label>
+                                                &nbsp;
                                             </div>
                                         </div>
 

@@ -1,9 +1,46 @@
 <?php
 $conn = new Query("localhost", "root", "", "scriptures_quiz");
 $centers = $conn->select("centers");
+if(isset($_POST['submit']) && !empty($_POST['submit'])) {
+    if(!empty($_POST['firstname']))
+    {
+        return;
+    } 
+    else {
+        $phone_check = $conn->select("users", "phone_no", "WHERE phone_no LIKE '%" . $_POST['phone_no'] . "%'");
+        if($phone_check){
+            $notice = failAlert("Phone/ Mobile number is already exist!");
+        } 
+        else {
+            $data = array(
+                'first_name' => $_POST['first_name'],
+                'last_name' => $_POST['last_name'],
+                'initiated_name' => $_POST['initiated_name'],
+                'phone_no' => $_POST['phone_no'],
+                'gender' => $_POST['gender'],
+                'cid' => $_POST['centers']
+            );
+            $validate = $conn->validate($data);
+            $enc_pass = $conn->hashPassword($_POST['password']);
+            $pass['password'] = $enc_pass;
+            $validate = array_merge($validate, $pass);
+            $user_add = $conn->insert('users',$validate);
+            if($user_add){
+                successAlert("Thank you for filling out our sign up form. We are glad that you joined us.<br>Please login to answer the quiz!");
+                redirect(substr( $url, 0, strrpos( $url, "?")) . '?section=login');
+            }
+        }
+    }
+  }
 ?>
   <div class="container h-100">
+
       <div class="row d-flex justify-content-center align-items-center h-100">
+      <?php
+    if($notice){
+        print $notice;
+    }
+    ?>     
           <div class="col">
               <div class="card card-registration my-4">
                   <div class="row g-0">
@@ -12,7 +49,7 @@ $centers = $conn->select("centers");
                               style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
                       </div>
                       <div class="col-xl-6">
-                          <form name="signup" action="<?php echo $url;?>" method="post">
+                          <form method="post" action="">
                               <div class="card-body p-md-5 text-black">
                                   <div class="row">
                                       <div class="col-md-6 mb-4">
@@ -83,11 +120,10 @@ $centers = $conn->select("centers");
                                       <!-- Create fields for the honeypot -->
                                       <input name="firstname" type="text" id="firstname" autocomplete="random_value" class="hide-robot">
                                       <!-- honeypot fields end -->
-                                      <input type="hidden" name="number" value="<?php echo $number; ?>">
+                                      <input type="hidden" name="number" value="<?php echo $time_passed; ?>">
                                       <button type="reset" data-mdb-button-init data-mdb-ripple-init
                                           class="btn btn-light btn-lg">Reset all</button>
-                                      <button type="submit" data-mdb-button-init data-mdb-ripple-init
-                                          class="btn btn-warning btn-lg ms-2">Submit</button>
+                                          <input type="submit" value="submit" class="btn btn-warning btn-lg ms-2" name="submit">
                                   </div>
 
                               </div>

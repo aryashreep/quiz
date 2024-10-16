@@ -1,7 +1,9 @@
 <?php
+session_start();
 require_once("./core/dbclass.php");
 require_once("./core/request.php");
 require_once("./core/session.php");
+require_once("./core/component.php");
 $time_passed = strtotime(date('H:i:s'))- strtotime(108);
 ?>
 <!doctype html>
