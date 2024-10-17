@@ -90,7 +90,7 @@ class Query
     public function authenticate($username, $password, $table)
     {
         $password_hash = $this->hashPassword($password);
-        $condition = "WHERE username = '$username' AND password = '$password_hash'";
+        $condition = "WHERE phone_no = '$username' AND password = '$password_hash'";
         return $this->select($table, "*", $condition);
     }
 }

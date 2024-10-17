@@ -1,8 +1,6 @@
 <?php
 require_once("./partials/header.php");
 require_once("./partials/nav.php");
-$uri = new Request();
-$url = $uri->fullUrl();
 $url_query = $uri->queryParam($url);
 if(!empty($url_query["section"])){
     $getParam = $url_query["section"];

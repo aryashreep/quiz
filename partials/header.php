@@ -5,6 +5,39 @@ require_once("./core/request.php");
 require_once("./core/session.php");
 require_once("./core/component.php");
 $time_passed = strtotime(date('H:i:s'))- strtotime(108);
+$conn = new Query("localhost", "root", "", "scriptures_quiz");
+$centers = $conn->select("centers");
+$uri = new Request();
+$url = $uri->fullUrl();
+$notice = "";
+/* Login */
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    // username and password sent from form
+    $auth = $conn->authenticate($_POST['phone_no'], $_POST['password'], 'users');
+    if($auth) {
+       reset($auth);
+       $auth = reset($auth);
+       $_SESSION['uid'] = $auth["uid"];
+       $_SESSION['role'] = $auth["role"];
+       $_SESSION['first_name'] = $auth["first_name"];
+       $_SESSION['last_name'] = $auth["last_name"];
+       $_SESSION['initiated_name'] = $auth["initiated_name"] ? $auth["initiated_name"] : 0;
+       $_SESSION['phone_no'] = $auth["phone_no"];
+       $_SESSION['gender'] = $auth["gender"];
+       $_SESSION['cid'] = $auth["cid"];
+       $_SESSION['created_date'] = $auth["created_date"];
+       redirect(substr( $url, 0, strrpos( $url, "?")));
+    } else {
+      $_SESSION['alert'] = failAlert("You have entered an invalid Mobile number or password!");
+    }
+  }
+ /* Logout */
+
+ if(){
+    session_unset();
+    session_destroy();
+    redirect(substr( $url, 0, strrpos( $url, "?")));
+ }
 ?>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
