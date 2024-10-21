@@ -1,9 +1,13 @@
 
         <!-- FOOTER -->
         <footer class="container">
-            <p class="float-end"><a href="#">Back to top</a></p>
-            <p>&copy; <?php echo date("Y")?> &nbsp;<a href="https://vedabase.io/en/library/bg/"
-                    target="_blank">Bhagavad-gītā As It Is</a>. &middot;</p>
+            <div class="row">
+                <div class="col-sm-4">&copy; <?php echo date("Y")?> 
+                        <a href="https://www.iskconbangalore.co.in/" target="_blank">ISKCON Seshadripuram</a>
+                </div>
+                <div class="col-sm-4 text-center"><img class="img-fluid" src="./assets/img/dandavat_pranam.png" width="70%"><br><span class="blink_text"><?php echo date("l jS\, F Y");?></span></div>
+                <div class="col-sm-4 text-end"><a href="#">Back to top</a></div>
+            </div>
         </footer>
     <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">

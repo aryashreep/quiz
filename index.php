@@ -1,12 +1,6 @@
 <?php
 require_once("./partials/header.php");
 require_once("./partials/nav.php");
-$url_query = $uri->queryParam($url);
-if(!empty($url_query["section"])){
-    $getParam = $url_query["section"];
-} else {
-    $getParam = "carousel";
-}
 ?>
     <main>
 
@@ -27,7 +21,7 @@ if(!empty($url_query["section"])){
                         Welcome to Bhagavad Gita Question and Answer Quiz!
                     <?php
                         } else {
-                            print ucfirst($getParam);
+                            print ucwords(str_replace('_', ' ', $getParam));
                         }
                     ?>
                 </h3>

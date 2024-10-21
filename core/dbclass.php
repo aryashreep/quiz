@@ -59,6 +59,14 @@ class Query
         return $this->executeQuery($sql);
     }
 
+    // lastinsertid()
+    public function lastinsertid($table, $columns = "*")
+    {
+        $sql = "SELECT $columns FROM $table ORDER BY $columns DESC LIMIT 1";
+        $result = $this->executeQuery($sql)->fetch_all(MYSQLI_ASSOC);
+        return $result[0][$columns];
+    }
+
     // update(): Updates data in the database
     public function update($table, $data, $condition = "")
     {

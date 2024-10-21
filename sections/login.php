@@ -46,7 +46,7 @@
                                     </div>
 
                                     <div class="col-12">
-                                        <button type="submit" class="btn btn-primary px-4 float-end mt-4">Login</button>
+                                        <button type="submit" name="login" class="btn btn-primary px-4 float-end mt-4">Login</button>
                                     </div>
                                 </form>
                             </div>
