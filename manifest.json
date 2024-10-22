@@ -1,0 +1,39 @@
+{
+	"name": "Quiz",
+	"short_name": "quiz",
+	"start_url": "https://quiz.iskconbangalore.co.in/",
+	"description": "Online quiz for the devotee.",
+	"theme_color": "#2a4892",
+	"display": "standalone",
+	"scope": "https://quiz.iskconbangalore.co.in/",
+	"icons": [
+		{
+			"src": "https://quiz.iskconbangalore.co.in/assets/img/android-chrome-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192",
+			"purpose": "any maskable"
+		},
+		{
+			"src": "https://quiz.iskconbangalore.co.in/assets/img/android-chrome-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512",
+			"purpose": "any maskable"
+		}
+	],
+	"shortcuts": [
+		{
+			"name": "Quiz",
+			"short_name": "quiz",
+			"url": "https://quiz.iskconbangalore.co.in/"
+		}
+	],
+	"background_color": "#1C3676",
+	"orientation": "portrait",
+	"screenshots": [
+		{
+			"src": "./assets/img/krishna_yoga.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	]
+}
