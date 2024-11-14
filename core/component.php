@@ -1,6 +1,5 @@
 <?php
 $time_passed = strtotime(date('H:i:s'))- strtotime(108);
-//$conn = new Query("localhost", "iskcop35_quiz", "An8)wvqOk@K%", "iskcop35_scriptures_quiz");
 $conn = new Query("localhost", "root", "", "scriptures_quiz");
 $notice = "";
 /* SQL */
