@@ -15,10 +15,10 @@ require_once("./core/ajaxdata.php");
 <html lang="en" data-bs-theme="auto">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
+<meta name="description" content="Bhagavad Question and Answer Quiz">
 <meta name="author" content="Aryashree Pritikrishna">
 <meta name="generator" content="PHP Opensource">
-<title>Welcome to Bhagavad Gita Question and Answer Quiz!</title>
+<title>Welcome to Bhagavad Question and Answer Quiz!</title>
 <link rel="apple-touch-icon" sizes="180x180" href="./assets/img/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="./assets/img/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="./assets/img/favicon-16x16.png">
@@ -54,7 +54,7 @@ function googleTranslateElementInit() {
                 </div>
                 <div
                     class="col-lg-8 col-md-8 col-sm-12 col-xs-12 text-end">
-                <marquee class="h2" behavior="scroll" direction="left" scrollamount="12"><img class="img-fluid" src="./assets/img/krishna_yoga_crop.png" width="5%"> Hare Kṛṣṇa Hare Kṛṣṇa Kṛṣṇa Kṛṣṇa Hare Hare ☸ Hare Rāma Hare Rāma Rāma Rāma Hare Hare <img class="img-fluid" src="./assets/img/krishna_yoga_crop.png" width="5%"> Hare Kṛṣṇa Hare Kṛṣṇa Kṛṣṇa Kṛṣṇa Hare Hare 🐚 Hare Rāma Hare Rāma Rāma Rāma Hare Hare <img class="img-fluid" src="./assets/img/krishna_yoga_crop.png" width="5%"> Hare Kṛṣṇa Hare Kṛṣṇa Kṛṣṇa Kṛṣṇa Hare Hare 🏹 Hare Rāma Hare Rāma Rāma Rāma Hare Hare <img class="img-fluid" src="./assets/img/krishna_yoga_crop.png" width="5%"></marquee>
+                <marquee class="h2" behavior="scroll" direction="left" scrollamount="12"><img class="img-fluid" src="./assets/img/krishna_yoga_crop.png" width="5%"> Hare Krishna Hare Krishna Krishna Krishna Hare Hare ☸ Hare Rama Hare Rama Rama Rama Hare Hare <img class="img-fluid" src="./assets/img/krishna_yoga_crop.png" width="5%"> Hare Krishna Hare Krishna Krishna Krishna Hare Hare 🐚 Hare Rama Hare Rama Rama Rama Hare Hare <img class="img-fluid" src="./assets/img/krishna_yoga_crop.png" width="5%"> Hare Krishna Hare Krishna Krishna Krishna Hare Hare 🏹 Hare Rama Hare Rama Rama Rama Hare Hare <img class="img-fluid" src="./assets/img/krishna_yoga_crop.png" width="5%"></marquee>
                 </div>
                 <div
                     class="col-lg-2 col-md-2 col-sm-12 col-xs-12 text-end">

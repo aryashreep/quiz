@@ -1,9 +1,12 @@
 <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-        <?php
+    <?php
       if(isset($_SESSION['alert']) && $_SESSION['alert']){
         echo $_SESSION['alert'];
         unset($_SESSION['alert']);
+      }
+      if(isset($_SESSION['quiz_disable']) && ($_SESSION['quiz_disable'] == 'disable')){
+        $disable_class = ' disabled';
       }
       $qid = intval($_GET['qid']);
       $questions = $conn->select("questions", "*", "WHERE qid=$qid LIMIT 1");
@@ -43,11 +46,11 @@
                         Sloka no <a href="<?php echo $ver_name[0]['verse_url'];?>" target="_blank"><?php echo $ver_name[0]['verse_no'];?></a>
                         </div>
                     </div>
-                    <div class="row">                              
+                    <div class="row">
                         <div class="col-sm text-center border h4"><?php print $question['questions']; ?></div>
                     </div>
                     <form action="" method="post" enctype="multipart/form-data">
-                    <div class="row row-cols-2 text-center border">                         
+                    <div class="row row-cols-2 text-center border">
                         <div class="col border p-2">
                             <input class="form-check-input" type="radio" name="oid" id="option1" value="1" required />
                             <label class="form-check-label h5" for="option1">
@@ -75,7 +78,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm text-center border fw-bold">
-                        <button type="submit" class="btn btn-primary px-5 mt-4 mb-4">Save</button>
+                        <button type="submit" class="btn btn-primary px-5 mt-4 mb-4 <?php echo $disable_class;?>">Save</button>
                         <input type="hidden" name="qid" value="<?php print $question['qid']; ?>" />
                         <input type="hidden" name="sid" value="<?php print $question['sid']; ?>" />
                         <input type="hidden" name="chapter_id" value="<?php print $question['chapter_id']; ?>" />
@@ -83,7 +86,7 @@
                         <input type="hidden" name="uid" value="<?php print $_SESSION['uid']; ?>" />
                         </div>
                     </div>
-                    </form>               
+                    </form>
                     <?php
                     }
 
@@ -91,7 +94,7 @@
                     ?>
                     <div class="row">
                         <div class="col-sm text-center border fw-bold align-middle">No records found!</div>
-                    </div>                     
+                    </div>
                     <?php
                 }
                 ?>

@@ -29,7 +29,7 @@ switch (@$url_query["section"]) {
             } else {
               $_SESSION['alert'] = failAlert("You have entered an invalid Mobile number or password!");
             }
-          }        
+          }
       break;
     case "signup":
         $getParam = "signup";
@@ -49,7 +49,7 @@ switch (@$url_query["section"]) {
             if (!!$_FILES['scr_image']['tmp_name']) // is the file uploaded yet?
             {
                 $info = explode('.', strtolower( $_FILES['scr_image']['name']) ); // whats the extension of the file
-                
+
                 if ( in_array( end($info), $allow) ) // is this file allowed
                 {
                     if (move_uploaded_file( $_FILES['scr_image']['tmp_name'], $target_dir . basename($_FILES['scr_image']['name']) ) )
@@ -68,8 +68,8 @@ switch (@$url_query["section"]) {
             if($scriptures_add){
                 successAlert("Scripture added successfully!");
                 redirect(substr( $url, 0, strrpos( $url, "?")) . '?section=add_scriptures');
-            }    
-          }         
+            }
+          }
        break;
     case "add_chapter":
         admin_auth($url, $_SESSION['role']);
@@ -86,8 +86,8 @@ switch (@$url_query["section"]) {
             if($chapter_add){
                 successAlert("Chapter added successfully!");
                 redirect(substr( $url, 0, strrpos( $url, "?")) . '?section=add_chapter');
-            }    
-          }         
+            }
+          }
        break;
     case "add_verse":
            admin_auth($url, $_SESSION['role']);
@@ -103,9 +103,9 @@ switch (@$url_query["section"]) {
             if($verse_add){
                 successAlert("Verse added successfully!");
                 redirect(substr( $url, 0, strrpos( $url, "?")) . '?section=add_verse');
-            }    
-          }            
-        break;        
+            }
+          }
+        break;
     case "add_question":
             admin_auth($url, $_SESSION['role']);
             $getParam = "add_question";
@@ -126,18 +126,18 @@ switch (@$url_query["section"]) {
                     'option_3' => $_POST['option_3'],
                     'option_4' => $_POST['option_4'],
                     'qid' => $last_insert_id
-                );                
+                );
                 $option_validate = $conn->validate($option_data);
                 $option_add = $conn->insert('options',$option_validate);
                 if($option_add){
                     successAlert("Question and Option added successfully!");
                     redirect(substr( $url, 0, strrpos( $url, "?")) . '?section=add_question');
-                }    
-              }             
+                }
+              }
         break;
     case "scriptures":
             $getParam = "scriptures";
-        break; 
+        break;
     case "chapters":
             $getParam = "chapters";
         break;
@@ -146,13 +146,20 @@ switch (@$url_query["section"]) {
         break;
     case "quiz":
             $getParam = "quiz";
+            if(isset($_SESSION['uid'])){
+                $question = $conn->select("user_answers", "COUNT(*) as count", "WHERE uid=" . $_SESSION['uid'] . " AND qid=" . $url_query["qid"] . " LIMIT 1");
+                if($question[0]['count'] > 0){
+                    $_SESSION['quiz_disable'] = 'disable';
+                    $_SESSION['alert'] = successAlert("You have already attend this, please try other questions!");
+                }
+            }
             if($_SERVER["REQUEST_METHOD"] == "POST") {
                 $qid = $_POST['qid'];
                 $question = $conn->select("questions", "*", "WHERE vid=$qid LIMIT 1");
                 if($_POST) {
                     if($question[0]['right_option'] == $_POST['oid']) {
                         $marks = 1;
-                    } 
+                    }
                     else {
                         $marks = 0;
                     }
@@ -167,18 +174,18 @@ switch (@$url_query["section"]) {
                     );
                     $ans_validate = $conn->validate($ans_data);
                     $user_ans_add = $conn->insert('user_answers', $ans_validate);
-                    if($user_ans_add){                    
+                    if($user_ans_add){
                         $_SESSION['alert'] = successAlert("Thank you for your prompt reponses to the question. Your understanding was outstanding!");
                         redirect(substr( $url, 0, strrpos( $url, "?")) . '?section=my_result');
                     }
                 } else {
                   $_SESSION['alert'] = failAlert("Please try again!");
                 }
-              }            
+              }
         break;
     case "my_result":
             $getParam = "my_result";
-        break;    
+        break;
     case "edit_chapters":
             $getParam = "edit_chapters";
             if($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -194,7 +201,7 @@ switch (@$url_query["section"]) {
                 if (!!$_FILES['chapter_image']['tmp_name']) // is the file uploaded yet?
                 {
                     $info = explode('.', strtolower( $_FILES['chapter_image']['name']) ); // whats the extension of the file
-                    
+
                     if ( in_array( end($info), $allow) ) // is this file allowed
                     {
                         // Rename the file
@@ -215,15 +222,15 @@ switch (@$url_query["section"]) {
                 else
                 {
                     $images['chapter_image'] = $_POST['edit_chapter_image'];
-                    $validate = array_merge($validate, $images);                    
+                    $validate = array_merge($validate, $images);
                 }
                 $chapters_edit = $conn->update('chapters', $validate, 'WHERE chapter_id='.$_POST['chapter_id']);
                 if($chapters_edit){
                     successAlert("Chapter updated successfully!");
                     redirect(substr( $url, 0, strrpos( $url, "?")) . '?section=add_chapter');
-                }    
-              }            
-        break;                                             
+                }
+              }
+        break;
     default:
         $getParam = "carousel";
   }

@@ -12,14 +12,14 @@
                 if(!empty($_SESSION['uid']))
                 {
                     $my_user_answers = $conn->select("user_answers", '*', 'WHERE uid='.$_SESSION['uid']);
-                    $total_mark = $conn->select("user_answers", 'SUM(marks)', 'WHERE uid='.$_SESSION['uid']);
+                    $total_mark = $conn->select("user_answers", 'SUM(DISTINCT marks) as mark', 'WHERE uid='.$_SESSION['uid'].' GROUP by uid');
                     ?>
                         <div class="row">
                             <div class="col-sm text-center border fw-bold align-middle h3 text-info">
                             Your total mark is 
                             <?php 
-                            print $total_mark[0]['SUM(marks)'].'&nbsp;';
-                            if(($total_mark[0]['SUM(marks)']) > 0)
+                            print $total_mark[0]['mark'].'&nbsp;';
+                            if(($total_mark[0]['mark']) > 0)
                                 echo '<i class="bi bi-emoji-heart-eyes"></i>';
                             else
                                 echo '<i class="bi bi-emoji-frown"></i>';

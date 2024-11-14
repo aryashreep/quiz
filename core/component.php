@@ -1,5 +1,6 @@
 <?php
 $time_passed = strtotime(date('H:i:s'))- strtotime(108);
+//$conn = new Query("localhost", "iskcop35_quiz", "An8)wvqOk@K%", "iskcop35_scriptures_quiz");
 $conn = new Query("localhost", "root", "", "scriptures_quiz");
 $notice = "";
 /* SQL */
@@ -27,9 +28,9 @@ function redirect($url) {
 
 function welcome($first_name, $last_name, $initiated_name, $gender){
     if($gender == 'Male') {
-        $devotee = 'Prabhu Ji';
+        $devotee = 'Prabhu';
     } else {
-        $devotee = 'Mata Ji';
+        $devotee = 'Mata';
     }
     if($initiated_name){
         $name = ucfirst($initiated_name);
@@ -51,7 +52,7 @@ function admin_auth($url, $role = 0){
 
 function filter_filename($str = '')
 {
-    $str = strip_tags($str); 
+    $str = strip_tags($str);
     $str = preg_replace('/[\r\n\t ]+/', ' ', $str);
     $str = preg_replace('/[\"\*\/\:\<\>\?\'\|]+/', ' ', $str);
     $str = strtolower($str);
